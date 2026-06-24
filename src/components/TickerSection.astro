@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+
+const optimizations = await getCollection('optimizations');
+---
+<section class="py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="inline-block w-3 h-3 rounded-full bg-amber-500"></span>
+          <span class="text-sm font-medium text-amber-400 uppercase tracking-wider">Optimizations</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-bold">Inference Optimizations</h2>
+      </div>
+      <a href="/optimizations" class="hidden sm:inline-flex items-center gap-1 text-sm text-slate-400 hover:text-white transition-colors">
+        View all
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <div class="relative h-[400px] overflow-hidden rounded-xl border border-border-dim bg-surface">
+        <div class="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-surface to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-surface to-transparent z-10 pointer-events-none"></div>
+
+        <div class="ticker-track animate-scroll-up hover:[animation-play-state:paused]">
+          {[...optimizations, ...optimizations].map((opt) => (
+            <a href={opt.data.url} target="_blank" rel="noopener" class="block p-5 border-b border-border-dim hover:bg-surface-alt transition-colors">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  {opt.data.category}
+                </span>
+                <h3 class="font-semibold">{opt.data.name}</h3>
+              </div>
+              <p class="text-sm text-slate-400 line-clamp-2">{opt.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="p-6 rounded-xl border border-border-dim bg-surface">
+          <h3 class="text-lg font-semibold mb-3">Why Optimizations Matter</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Running large language models at scale requires clever engineering. From quantization
+            that shrinks model weights to attention mechanisms that reduce memory usage, these
+            techniques make it possible to serve powerful models on commodity hardware.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="p-5 rounded-xl border border-border-dim bg-surface text-center">
+            <div class="text-2xl font-bold text-amber-400">4-8x</div>
+            <div class="text-xs text-slate-500 mt-1">Memory reduction with quantization</div>
+          </div>
+          <div class="p-5 rounded-xl border border-border-dim bg-surface text-center">
+            <div class="text-2xl font-bold text-amber-400">2-4x</div>
+            <div class="text-xs text-slate-500 mt-1">Throughput gain with FlashAttention</div>
+          </div>
+          <div class="p-5 rounded-xl border border-border-dim bg-surface text-center">
+            <div class="text-2xl font-bold text-amber-400">24x</div>
+            <div class="text-xs text-slate-500 mt-1">Higher batch with PagedAttention</div>
+          </div>
+          <div class="p-5 rounded-xl border border-border-dim bg-surface text-center">
+            <div class="text-2xl font-bold text-amber-400">2-3x</div>
+            <div class="text-xs text-slate-500 mt-1">Faster decode with speculative</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 text-center sm:hidden">
+      <a href="/optimizations" class="text-sm text-slate-400 hover:text-white transition-colors">View all optimizations &rarr;</a>
+    </div>
+  </div>
+</section>

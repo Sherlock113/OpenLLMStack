@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const optimizations = (await getCollection('optimizations')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const allCategories = [...new Set(optimizations.map(o => o.data.category))].sort();
+---
+<Layout title="Inference Optimizations — OpenLLMStack" description="Key techniques for faster, cheaper LLM inference: quantization, attention optimizations, speculative decoding, and more.">
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="inline-block w-3 h-3 rounded-full bg-amber-500"></span>
+          <span class="text-sm font-medium text-amber-400 uppercase tracking-wider">Optimizations</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-bold mb-4">Inference Optimizations</h1>
+        <p class="text-lg text-slate-400 max-w-2xl">The techniques that make it possible to run powerful LLMs on commodity hardware — from quantization to memory management.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-8" id="filter-bar">
+        <button class="filter-btn active px-3 py-1.5 rounded-full text-sm font-medium border bg-amber-500/10 text-amber-400 border-amber-500/20 transition-colors" data-category="all">All</button>
+        {allCategories.map(cat => (
+          <button class="filter-btn px-3 py-1.5 rounded-full text-sm font-medium border border-border-dim bg-surface text-slate-400 hover:bg-surface-alt transition-colors" data-category={cat}>{cat}</button>
+        ))}
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="card-grid">
+        {optimizations.map((opt) => (
+          <a
+            href={opt.data.url}
+            target="_blank"
+            rel="noopener"
+            class="card-item group p-6 rounded-xl border border-border-dim bg-surface hover:bg-surface-alt hover:border-amber-500/30 transition-all duration-300"
+            data-category={opt.data.category}
+          >
+            <div class="mb-4">
+              <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                {opt.data.category}
+              </span>
+            </div>
+            <h2 class="text-lg font-semibold group-hover:text-amber-400 transition-colors mb-3">{opt.data.name}</h2>
+            <p class="text-sm text-slate-400 mb-4 line-clamp-4">{opt.data.description}</p>
+            <div class="flex flex-wrap gap-1.5">
+              {opt.data.tags.map((tag: string) => (
+                <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-400">{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card-item');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => {
+        b.classList.remove('active', 'bg-amber-500/10', 'text-amber-400', 'border-amber-500/20');
+        b.classList.add('bg-surface', 'text-slate-400');
+      });
+      btn.classList.add('active', 'bg-amber-500/10', 'text-amber-400', 'border-amber-500/20');
+      btn.classList.remove('bg-surface', 'text-slate-400');
+
+      const category = btn.getAttribute('data-category');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          (card as HTMLElement).style.display = '';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

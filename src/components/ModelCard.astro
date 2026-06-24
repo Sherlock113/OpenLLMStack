@@ -1,0 +1,91 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  model: CollectionEntry<'models'>;
+}
+
+const { model } = Astro.props;
+const m = model.data;
+---
+<div class="group h-full p-6 rounded-xl border border-border-dim bg-surface hover:border-blue-500/30 transition-colors duration-300 flex flex-col">
+  <!-- Model name + Hugging Face link -->
+  <div class="flex items-start justify-between gap-3 mb-1">
+    <div class="flex items-center gap-3 min-w-0">
+      <img src={m.logo} alt={`${m.org} logo`} class="w-10 h-10 rounded-lg object-cover bg-white/5 p-1 shrink-0" loading="lazy" />
+      <h3 class="text-lg font-semibold break-words">{m.name}</h3>
+    </div>
+    <a
+      href={m.url}
+      target="_blank"
+      rel="noopener"
+      title="View on Hugging Face"
+      aria-label={`${m.name} on Hugging Face`}
+      class="shrink-0 p-1.5 rounded-lg hover:bg-surface-alt transition-colors text-2xl leading-none"
+    >
+      <span role="img" aria-label="Hugging Face">🤗</span>
+    </a>
+  </div>
+  <p class="text-xs font-medium text-blue-400 mb-4">{m.releaseDate}</p>
+
+  <!-- Specs -->
+  <dl class="grid grid-cols-2 gap-x-4 gap-y-3 mb-5 text-sm">
+    <div>
+      <dt class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-0.5">Parameters</dt>
+      <dd class="text-white font-semibold">{m.params}</dd>
+    </div>
+    <div>
+      <dt class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-0.5">Architecture</dt>
+      <dd class="text-white font-semibold">{m.architecture ?? '—'}</dd>
+    </div>
+    <div>
+      <dt class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-0.5">Context window</dt>
+      <dd class="text-white font-semibold">{m.contextLength ?? '—'}</dd>
+    </div>
+    <div>
+      <dt class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-0.5">License</dt>
+      <dd class="text-white font-semibold">{m.license}</dd>
+    </div>
+  </dl>
+
+  <!-- GPU configurations -->
+  {m.deployment && m.deployment.length > 0 && (
+    <div class="mb-5">
+      <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-2">Recommended GPU configurations</p>
+      <div class="flex flex-wrap gap-1.5">
+        {m.deployment.slice(0, 2).map((gpu: string) => (
+          <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">{gpu}</span>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Inference engines -->
+  <div class="mt-auto pt-4 border-t border-border-dim">
+    <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-2">Run it with</p>
+    <div class="flex flex-wrap gap-2">
+      {m.vllmRecipe && (
+        <a
+          href={m.vllmRecipe}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-border-dim bg-surface-alt hover:border-blue-500/40 transition-colors"
+        >
+          <img src="/logos/vllm-logo.svg" alt="" class="w-4 h-4" loading="lazy" />
+          vLLM
+        </a>
+      )}
+      {m.sglangCookbook && (
+        <a
+          href={m.sglangCookbook}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-border-dim bg-surface-alt hover:border-blue-500/40 transition-colors"
+        >
+          <img src="/logos/sglang-logo.png" alt="" class="w-4 h-4" loading="lazy" />
+          SGLang
+        </a>
+      )}
+    </div>
+  </div>
+</div>

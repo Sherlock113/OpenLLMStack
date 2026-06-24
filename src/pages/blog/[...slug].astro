@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateFmt = (d: string) => {
+  const date = new Date(d);
+  const month = date.toLocaleDateString('en-US', { month: 'short' });
+  const day = date.toLocaleDateString('en-US', { day: 'numeric' });
+  const year = date.toLocaleDateString('en-US', { year: 'numeric' });
+  return `${month}. ${day}, ${year}`;
+};
+---
+<Layout title={`${post.data.title} — OpenLLMStack`} description={post.data.description}>
+  <article class="py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <a href="/blog" class="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-indigo-400 transition-colors mb-8">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        Back to blog
+      </a>
+
+      <header class="mb-10 border-b border-border-dim pb-8">
+        <h1 class="text-3xl sm:text-4xl font-bold leading-tight mb-4">{post.data.title}</h1>
+        <p class="text-lg text-slate-400 mb-6">{post.data.description}</p>
+        <div class="flex items-center gap-3">
+          <img
+            src={post.data.authorImage}
+            alt={post.data.author}
+            width="40"
+            height="40"
+            loading="lazy"
+            class="w-10 h-10 rounded-full object-cover border border-border-dim"
+          />
+          <div class="text-sm leading-tight">
+            <p class="text-slate-300">
+              Written by
+              <a href={post.data.authorUrl} target="_blank" rel="noopener" class="text-indigo-400 hover:text-indigo-300 hover:underline">{post.data.author}</a>
+            </p>
+            <p class="text-slate-500 mt-0.5">Last updated on {dateFmt(post.data.date)}</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="prose-blog">
+        <Content />
+      </div>
+    </div>
+  </article>
+</Layout>
