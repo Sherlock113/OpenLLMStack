@@ -29,7 +29,7 @@ const models = (await getCollection('models')).sort(
 
     <div class="flex animate-scroll-left group-hover:[animation-play-state:paused] w-max">
       {[...models, ...models].map((model) => (
-        <div class="flex-shrink-0 w-80 mx-3">
+        <div class="flex-shrink-0 w-96 mx-3">
           <ModelCard model={model} />
         </div>
       ))}

@@ -43,22 +43,24 @@ const m = model.data;
       <dd class="text-white font-semibold">{m.contextLength ?? '—'}</dd>
     </div>
     <div>
+      <dt class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-0.5">Modality</dt>
+      <dd class="text-white font-semibold">{m.modalityNote ?? m.modality ?? '—'}</dd>
+    </div>
+    <div>
       <dt class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-0.5">License</dt>
       <dd class="text-white font-semibold">{m.license}</dd>
     </div>
-  </dl>
-
-  <!-- GPU configurations -->
-  {m.deployment && m.deployment.length > 0 && (
-    <div class="mb-5">
-      <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-2">Recommended GPU configurations</p>
-      <div class="flex flex-wrap gap-1.5">
-        {m.deployment.slice(0, 2).map((gpu: string) => (
-          <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">{gpu}</span>
-        ))}
+    {m.deployment && m.deployment.length > 0 && (
+      <div>
+        <dt class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-1.5">Recommended Hardware</dt>
+        <dd class="flex flex-wrap gap-1.5">
+          {m.deployment.slice(0, 2).map((gpu: string) => (
+            <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">{gpu}</span>
+          ))}
+        </dd>
       </div>
-    </div>
-  )}
+    )}
+  </dl>
 
   <!-- Inference engines -->
   <div class="mt-auto pt-4 border-t border-border-dim">
@@ -69,10 +71,10 @@ const m = model.data;
           href={m.vllmRecipe}
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-border-dim bg-surface-alt hover:border-blue-500/40 transition-colors"
+          aria-label="vLLM recipe"
+          class="inline-flex items-center rounded-lg bg-white px-3 py-2 ring-1 ring-border-dim hover:ring-blue-500/50 transition-all"
         >
-          <img src="/logos/vllm-logo.svg" alt="" class="w-4 h-4" loading="lazy" />
-          vLLM
+          <img src="/logos/vllm-logo.svg" alt="vLLM" class="h-5 w-auto" loading="lazy" />
         </a>
       )}
       {m.sglangCookbook && (
@@ -80,10 +82,10 @@ const m = model.data;
           href={m.sglangCookbook}
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-border-dim bg-surface-alt hover:border-blue-500/40 transition-colors"
+          aria-label="SGLang cookbook"
+          class="inline-flex items-center rounded-lg bg-white px-3 py-2 ring-1 ring-border-dim hover:ring-blue-500/50 transition-all"
         >
-          <img src="/logos/sglang-logo.png" alt="" class="w-4 h-4" loading="lazy" />
-          SGLang
+          <img src="/logos/sglang-logo.png" alt="SGLang" class="h-5 w-auto" loading="lazy" />
         </a>
       )}
     </div>

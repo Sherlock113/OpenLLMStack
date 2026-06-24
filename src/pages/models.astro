@@ -16,10 +16,10 @@ const models = (await getCollection('models')).sort(
           <span class="text-sm font-medium text-blue-400 uppercase tracking-wider">Models</span>
         </div>
         <h1 class="text-4xl sm:text-5xl font-bold mb-4">Open Source LLMs</h1>
-        <p class="text-lg text-slate-400 max-w-2xl">The latest and most impactful open-weight language models, from compact edge models to frontier-scale giants.</p>
+        <p class="text-lg text-slate-400 max-w-2xl">The latest and most powerful open language models, from compact edge models to frontier-scale giants.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
         {models.map((model) => (
           <ModelCard model={model} />
         ))}
