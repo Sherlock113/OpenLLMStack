@@ -31,3 +31,7 @@ Preview the production build locally:
 ```bash
 npm run preview
 ```
+
+## Trademarks
+
+All company and project logos are trademarks of their respective owners and are used for identification purposes only. They are not covered by this project's license.
