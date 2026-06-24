@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="OpenLLMStack">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="top" x1="16" y1="9" x2="48" y2="23" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#93c5fd"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <!-- bottom layer -->
+  <path d="M32 41 L48 48 L32 55 L16 48 Z" fill="#1d4ed8"/>
+  <!-- middle layer -->
+  <path d="M32 25 L48 32 L32 39 L16 32 Z" fill="#2563eb"/>
+  <!-- top layer -->
+  <path d="M32 9 L48 16 L32 23 L16 16 Z" fill="url(#top)"/>
+</svg>
