@@ -22,7 +22,7 @@ const agents = await getCollection('agents');
     <div id="agent-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {agents.map((agent, i) => (
         <a
-          href={agent.data.url}
+          href={agent.data.github}
           target="_blank"
           rel="noopener"
           class="agent-card group p-6 rounded-xl border border-border-dim bg-surface hover:bg-surface-alt hover:border-purple-500/30 transition-all duration-500 opacity-0"

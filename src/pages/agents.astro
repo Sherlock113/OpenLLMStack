@@ -27,7 +27,7 @@ const allTags = [...new Set(agents.flatMap(a => a.data.tags))].sort();
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="card-grid">
         {agents.map((agent) => (
           <a
-            href={agent.data.url}
+            href={agent.data.github}
             target="_blank"
             rel="noopener"
             class="card-item group p-6 rounded-xl border border-border-dim bg-surface hover:bg-surface-alt hover:border-purple-500/30 transition-all duration-300"
