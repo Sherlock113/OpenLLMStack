@@ -19,20 +19,15 @@ const optimizations = await getCollection('optimizations');
       </a>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-      <div class="relative h-[400px] overflow-hidden rounded-xl border border-border-dim bg-surface">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+      <div class="relative min-h-[400px] overflow-hidden rounded-xl border border-border-dim bg-surface">
         <div class="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-surface to-transparent z-10 pointer-events-none"></div>
         <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-surface to-transparent z-10 pointer-events-none"></div>
 
-        <div class="ticker-track animate-scroll-up hover:[animation-play-state:paused]">
+        <div class="ticker-track absolute inset-x-0 top-0 animate-scroll-up hover:[animation-play-state:paused]">
           {[...optimizations, ...optimizations].map((opt) => (
             <a href={opt.data.url} target="_blank" rel="noopener" class="block p-5 border-b border-border-dim hover:bg-surface-alt transition-colors">
-              <div class="flex items-center gap-3 mb-2">
-                <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                  {opt.data.category}
-                </span>
-                <h3 class="font-semibold">{opt.data.name}</h3>
-              </div>
+              <h3 class="font-semibold mb-2">{opt.data.name}</h3>
               <p class="text-sm text-slate-400 line-clamp-2">{opt.data.description}</p>
             </a>
           ))}
@@ -43,7 +38,7 @@ const optimizations = await getCollection('optimizations');
         <div class="p-6 rounded-xl border border-border-dim bg-surface">
           <h3 class="text-lg font-semibold mb-3">Why Optimizations Matter</h3>
           <p class="text-sm text-slate-400 leading-relaxed">
-            Running large language models at scale requires clever engineering. From quantization
+            Running LLMs at scale requires clever engineering. From quantization
             that shrinks model weights to attention mechanisms that reduce memory usage, these
             techniques make it possible to serve powerful models on commodity hardware.
           </p>
@@ -58,12 +53,12 @@ const optimizations = await getCollection('optimizations');
             <div class="text-xs text-slate-500 mt-1">Throughput gain with FlashAttention</div>
           </div>
           <div class="p-5 rounded-xl border border-border-dim bg-surface text-center">
-            <div class="text-2xl font-bold text-amber-400">24x</div>
-            <div class="text-xs text-slate-500 mt-1">Higher batch with PagedAttention</div>
+            <div class="text-2xl font-bold text-amber-400">23x+</div>
+            <div class="text-xs text-slate-500 mt-1">Throughput with continuous batching</div>
           </div>
           <div class="p-5 rounded-xl border border-border-dim bg-surface text-center">
             <div class="text-2xl font-bold text-amber-400">2-3x</div>
-            <div class="text-xs text-slate-500 mt-1">Faster decode with speculative</div>
+            <div class="text-xs text-slate-500 mt-1">Faster inference with speculative decoding</div>
           </div>
         </div>
       </div>
