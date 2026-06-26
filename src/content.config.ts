@@ -88,7 +88,7 @@ const timeline = defineCollection({
   schema: z.object({
     date: z.string(),
     title: z.string(),
-    category: z.enum(['models', 'inference', 'optimizations', 'agents', 'papers']),
+    category: z.enum(['models', 'inference', 'optimizations', 'agents', 'papers', 'companies']),
     description: z.string(),
     url: z.string().optional(),
   }),

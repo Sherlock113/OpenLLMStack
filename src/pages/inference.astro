@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const engines = (await getCollection('inference')).sort((a, b) => a.data.name.localeCompare(b.data.name));
-const allTags = [...new Set(engines.flatMap(e => e.data.tags))].sort();
 ---
 <Layout title="Inference Engines — OpenLLMStack" description="Compare open-source LLM inference engines: vLLM, SGLang, llama.cpp, Ollama, TGI, TensorRT-LLM, and more.">
   <section class="py-16 sm:py-20">
@@ -17,21 +16,13 @@ const allTags = [...new Set(engines.flatMap(e => e.data.tags))].sort();
         <p class="text-lg text-slate-400 max-w-2xl">Open-source frameworks for serving and running LLMs — from cloud-scale GPU clusters to local laptops.</p>
       </div>
 
-      <div class="flex flex-wrap gap-2 mb-8" id="filter-bar">
-        <button class="filter-btn active px-3 py-1.5 rounded-full text-sm font-medium border bg-emerald-500/10 text-emerald-400 border-emerald-500/20 transition-colors" data-tag="all">All</button>
-        {allTags.map(tag => (
-          <button class="filter-btn px-3 py-1.5 rounded-full text-sm font-medium border border-border-dim bg-surface text-slate-400 hover:bg-surface-alt transition-colors" data-tag={tag}>{tag}</button>
-        ))}
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="card-grid">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {engines.map((engine) => (
           <a
-            href={engine.data.url}
+            href={engine.data.github}
             target="_blank"
             rel="noopener"
-            class="card-item group p-6 rounded-xl border border-border-dim bg-surface hover:bg-surface-alt hover:border-emerald-500/30 transition-all duration-300"
-            data-tags={engine.data.tags.join(',')}
+            class="group p-6 rounded-xl border border-border-dim bg-surface hover:bg-surface-alt hover:border-emerald-500/30 transition-all duration-300"
           >
             <div class="flex items-start justify-between mb-4">
               <div>
@@ -43,40 +34,10 @@ const allTags = [...new Set(engines.flatMap(e => e.data.tags))].sort();
                 {engine.data.stars}
               </div>
             </div>
-            <p class="text-sm text-slate-400 mb-4 line-clamp-3">{engine.data.description}</p>
-            <div class="flex flex-wrap gap-1.5">
-              {engine.data.tags.map((tag: string) => (
-                <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">{tag}</span>
-              ))}
-            </div>
+            <p class="text-sm text-slate-400 line-clamp-3">{engine.data.description}</p>
           </a>
         ))}
       </div>
     </div>
   </section>
 </Layout>
-
-<script>
-  const buttons = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.card-item');
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => {
-        b.classList.remove('active', 'bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/20');
-        b.classList.add('bg-surface', 'text-slate-400');
-      });
-      btn.classList.add('active', 'bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/20');
-      btn.classList.remove('bg-surface', 'text-slate-400');
-
-      const tag = btn.getAttribute('data-tag');
-      cards.forEach(card => {
-        if (tag === 'all' || card.getAttribute('data-tags')?.includes(tag!)) {
-          (card as HTMLElement).style.display = '';
-        } else {
-          (card as HTMLElement).style.display = 'none';
-        }
-      });
-    });
-  });
-</script>

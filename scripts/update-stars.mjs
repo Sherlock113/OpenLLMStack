@@ -1,5 +1,6 @@
-// Fetches the latest GitHub star counts for every agent framework and writes
-// them back into src/content/agents/*.md so each build reflects current numbers.
+// Fetches the latest GitHub star counts for every agent framework and inference
+// engine and writes them back into their src/content/**/*.md files so each build
+// reflects current numbers.
 //
 // Runs as part of `npm run build`. It is intentionally non-fatal: if the
 // network is unavailable or the GitHub API rate-limits us, the existing
@@ -10,7 +11,8 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const AGENTS_DIR = join(__dirname, '..', 'src', 'content', 'agents');
+const CONTENT_DIR = join(__dirname, '..', 'src', 'content');
+const COLLECTIONS = ['agents', 'inference'];
 
 // Format a raw star count like 41234 into "41.2k".
 function formatStars(n) {
@@ -37,42 +39,48 @@ async function fetchStars(owner, repo) {
 }
 
 async function main() {
-  let files;
-  try {
-    files = (await readdir(AGENTS_DIR)).filter((f) => f.endsWith('.md'));
-  } catch (err) {
-    console.warn(`[update-stars] Could not read ${AGENTS_DIR}: ${err.message}. Skipping.`);
-    return;
-  }
-
   let updated = 0;
-  for (const file of files) {
-    const path = join(AGENTS_DIR, file);
-    const content = await readFile(path, 'utf8');
+  let total = 0;
 
-    const githubMatch = content.match(/github:\s*"([^"]+)"/);
-    if (!githubMatch) continue;
-    const repo = parseRepo(githubMatch[1]);
-    if (!repo) {
-      console.warn(`[update-stars] Could not parse repo from ${githubMatch[1]} (${file}).`);
+  for (const collection of COLLECTIONS) {
+    const dir = join(CONTENT_DIR, collection);
+    let files;
+    try {
+      files = (await readdir(dir)).filter((f) => f.endsWith('.md'));
+    } catch (err) {
+      console.warn(`[update-stars] Could not read ${dir}: ${err.message}. Skipping.`);
       continue;
     }
 
-    try {
-      const count = await fetchStars(repo.owner, repo.repo);
-      const stars = formatStars(count);
-      const next = content.replace(/stars:\s*"[^"]*"/, `stars: "${stars}"`);
-      if (next !== content) {
-        await writeFile(path, next);
-        console.log(`[update-stars] ${repo.owner}/${repo.repo} -> ${stars}`);
-        updated++;
+    for (const file of files) {
+      total++;
+      const path = join(dir, file);
+      const content = await readFile(path, 'utf8');
+
+      const githubMatch = content.match(/github:\s*"([^"]+)"/);
+      if (!githubMatch) continue;
+      const repo = parseRepo(githubMatch[1]);
+      if (!repo) {
+        console.warn(`[update-stars] Could not parse repo from ${githubMatch[1]} (${collection}/${file}).`);
+        continue;
       }
-    } catch (err) {
-      console.warn(`[update-stars] Keeping existing stars for ${file}: ${err.message}`);
+
+      try {
+        const count = await fetchStars(repo.owner, repo.repo);
+        const stars = formatStars(count);
+        const next = content.replace(/stars:\s*"[^"]*"/, `stars: "${stars}"`);
+        if (next !== content) {
+          await writeFile(path, next);
+          console.log(`[update-stars] ${repo.owner}/${repo.repo} -> ${stars}`);
+          updated++;
+        }
+      } catch (err) {
+        console.warn(`[update-stars] Keeping existing stars for ${collection}/${file}: ${err.message}`);
+      }
     }
   }
 
-  console.log(`[update-stars] Done. Updated ${updated}/${files.length} file(s).`);
+  console.log(`[update-stars] Done. Updated ${updated}/${total} file(s).`);
 }
 
 main();

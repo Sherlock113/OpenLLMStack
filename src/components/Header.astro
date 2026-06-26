@@ -1,7 +1,7 @@
 ---
 const navLinks = [
   { href: '/models', label: 'Models' },
-  { href: '/inference', label: 'Inference' },
+  { href: '/inference', label: 'Engines' },
   { href: '/optimizations', label: 'Optimizations' },
   { href: '/agents', label: 'Agents' },
   { href: '/papers', label: 'Papers' },
@@ -14,7 +14,7 @@ const currentPath = Astro.url.pathname;
   <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <a href="/" class="flex items-center gap-2 text-lg font-bold tracking-tight">
-        <span class="text-blue-500">&#9670;</span>
+        <img src="/favicon.svg" alt="OpenLLMStack logo" class="h-7 w-7" width="28" height="28" />
         <span>OpenLLMStack</span>
       </a>
 
