@@ -1,9 +1,9 @@
 ---
-title: "Announcing OpenLLMStack"
+title: "About OpenLLMStack"
 description: "Why I built OpenLLMStack and what you can expect: a single, curated hub for the open-source LLM ecosystem."
 date: "2026-06-24"
 author: "Sherlock Xu"
-tags: ["Announcements", "Open Source"]
+tags: ["Open Source"]
 ---
 
 The open-source LLM ecosystem moves fast. New flagship models drop weekly, inference engines ship breakthrough optimizations, and agentic frameworks reinvent themselves overnight. Keeping up has become a full-time job, and the signal is scattered across model cards, GitHub repos, arXiv papers, Discord threads, and release blogs.
@@ -29,7 +29,6 @@ The site is organized around the layers of the modern open LLM stack:
 - **[Inference](/inference)**: the engines and serving frameworks that run these models in production.
 - **[Optimizations](/optimizations)**: the techniques that make inference faster and cheaper, from quantization to speculative decoding to prefix caching.
 - **[Agents](/agents)**: the frameworks for building agentic applications on top of open models.
-- **[Papers](/papers)**: the research that shaped the ecosystem, curated and summarized.
 - **[Timeline](/timeline)**: an interactive view of the major milestones in open-source AI.
 
 Every model card is designed to be actionable. You shouldn't have to dig through a README to find out whether a model fits on your hardware. It's right there on the card, alongside the exact recipes to deploy it.

@@ -71,18 +71,6 @@ const agents = defineCollection({
   }),
 });
 
-const papers = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/content/papers' }),
-  schema: z.object({
-    title: z.string(),
-    authors: z.string(),
-    date: z.string(),
-    arxivUrl: z.string(),
-    summary: z.string(),
-    tags: z.array(z.string()),
-  }),
-});
-
 const timeline = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/timeline' }),
   schema: z.object({
@@ -102,10 +90,10 @@ const blog = defineCollection({
     date: z.string(),
     author: z.string().default('Sherlock Xu'),
     authorUrl: z.string().default('https://github.com/Sherlock113'),
-    authorImage: z.string().default('https://github.com/Sherlock113.png'),
+    authorImage: z.string().default('/authors/sherlock-xu.jpg'),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),
 });
 
-export const collections = { models, inference, optimizations, agents, papers, timeline, blog };
+export const collections = { models, inference, optimizations, agents, timeline, blog };
