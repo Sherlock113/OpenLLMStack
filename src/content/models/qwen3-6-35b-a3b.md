@@ -22,10 +22,10 @@ vllmRecipe: "https://recipes.vllm.ai/Qwen/Qwen3.6-35B-A3B"
 sglangCookbook: "https://docs.sglang.io/cookbook/autoregressive/Qwen/Qwen3.6"
 releaseBlog: "https://github.com/QwenLM/Qwen3.6"
 blogPosts:
-  - title: "Qwen 3.6 Series: Alibaba's Open-Source LLM Revolution in 2026"
+  - title: "Qwen 3.6 Series: Alibaba's Open Source LLM Revolution in 2026"
     url: "https://aimlapi.com/blog/qwen-3-6-series-alibabas-open-source-llm-revolution-in-2026"
   - title: "Alibaba Unveils Qwen3.6-Plus to Accelerate Agentic AI Deployment"
     url: "https://www.alibabacloud.com/blog/alibaba-unveils-qwen3-6-plus-to-accelerate-agentic-ai-deployment-for-enterprises-and-alibaba%E2%80%99s-ai-applications_603000"
-  - title: "Qwen by Alibaba in 2026: Free Open-Source AI for Business"
+  - title: "Qwen by Alibaba in 2026: Free Open Source AI for Business"
     url: "https://mysummit.school/blog/en/qwen-alibaba-review-2026/"
 ---

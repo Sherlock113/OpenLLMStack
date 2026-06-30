@@ -1,5 +1,5 @@
 ---
-title: "40+ Open Source LLM Statistics & Trends (2026)"
+title: "30+ Open Source LLM Statistics & Trends (2026)"
 description: "A curated roundup of the latest open source LLM statistics: how many open models exist, adoption and usage, the open vs. closed performance gap, costs, and who's building them."
 date: "2026-06-30"
 author: "Sherlock Xu"
@@ -75,6 +75,24 @@ You can browse the leading open models, their licenses, and recommended hardware
 
 Sources: [Meta](https://about.fb.com/news/2025/03/celebrating-1-billion-downloads-llama/), [TechCrunch](https://techcrunch.com/2025/04/29/meta-says-its-llama-ai-models-have-been-downloaded-1-2b-times/), [Xinhua](https://english.news.cn/20260113/004b0522f987475cbf83ffc3a8d009aa/c.html), [Hugging Face](https://huggingface.co/blog/huggingface/state-of-os-hf-spring-2026)
 
+## The best open source LLMs in 2026
+
+Popularity and quality are not the same thing. Downloads measure reach, but the "best" open model depends on what you are building. By mid-2026, several open families compete at or near the proprietary frontier, each with a different strength.
+
+| Model | Maker | Strongest at |
+| --- | --- | --- |
+| GLM-5.2 | Z.ai | State-of-the-art coding and agentic engineering, 1M token context |
+| MiniMax-M3 | MiniMax | Frontier coding and agentic work, native multimodal and computer use |
+| DeepSeek-V4-Pro | DeepSeek | Reasoning and coding with adaptive effort modes and strong world knowledge |
+| Kimi-K2.6 | Moonshot AI | Long-horizon coding and agent swarm orchestration |
+| Qwen3.5-397B-A17B | Alibaba | Multimodal reasoning across 200+ languages, very long context |
+| MiMo-V2.5-Pro | Xiaomi | Token-efficient coding agents with long-context reasoning |
+| Gemma 4 | Google | Top-tier reasoning and coding |
+
+A common thread runs through the 2026 leaders: state-of-the-art coding, agentic tool use, and context windows that now stretch to 1 million tokens or more.
+
+For the full list with parameters, licenses, context windows, and recommended GPUs, see the [OpenLLMStack models page](/models).
+
 ## Open vs. closed source: the performance gap
 
 The quality gap between the best open and closed models has nearly disappeared. On the Chatbot Arena leaderboard, the top closed model led the top open model by 8.04% in January 2024. By February 2025, that lead had shrunk to just 1.70%.
@@ -110,6 +128,22 @@ A big share of that gain comes from smarter serving, not just cheaper chips. You
 
 Sources: [a16z](https://a16z.com/llmflation-llm-inference-cost/), [DeepSeek API Docs](https://api-docs.deepseek.com/quick_start/pricing), [OpenAI API Pricing](https://developers.openai.com/api/docs/pricing)
 
+## Top open source LLM API providers
+
+You do not need your own GPUs to run an open model. A growing set of serverless inference providers host the leading open weights behind a single API, billed per token, so you can switch models without managing infrastructure.
+
+| Provider | Known for |
+| --- | --- |
+| Together AI | Broad catalog of 200+ open models behind one unified API |
+| Fireworks AI | Fast, production-grade serving of popular open models |
+| Groq | Custom LPU silicon for very low latency and high throughput |
+| DeepInfra | Low-cost, pay-per-token hosting of open models |
+| Baseten | Custom deployment and autoscaling for open weights |
+| Modular | Shared endpoints and reserved dedicated GPU capacity, optimized by MAX across GPU vendors |
+| Hugging Face | Hub-native inference endpoints next to the models |
+
+For the cheapest access to a single model, the first-party API from the model maker is often the lowest-priced option, such as the APIs from DeepSeek and Alibaba for their own models. Aggregators like OpenRouter route one request across many of these providers so you can compare price and speed.
+
 ## DeepSeek R1: the breakout moment for open source AI
 
 No single release did more for the profile of open source AI than DeepSeek R1. The model launched on January 20, 2025, and within days the DeepSeek app climbed to No. 1 on the U.S. Apple App Store, displacing ChatGPT and topping the charts in more than 50 countries.
@@ -134,6 +168,14 @@ However, the term "open source" is often used loosely. Many models are openly av
 
 By downloads, Qwen from Alibaba is currently the most popular open source LLM. It overtook Llama by Meta in cumulative Hugging Face downloads in October 2025 and has more derivative models than any other family.
 
+### What is the best open source LLM in 2026?
+
+There is no single best open source LLM in 2026. The right pick depends on the task.
+
+There is no single best open source LLM in 2026. Some models are good at coding, others at reasoning, long-context processing, or multilingual tasks. The right model depends on your workload, hardware, latency requirements, and budget.
+
+If you self-host an open source LLM, you can also adapt it to your domain by fine-tuning the model on proprietary data. This can significantly improve performance for specialized tasks, such as legal analysis, healthcare, finance, or customer support, helping the model outperform a general-purpose foundation model in your specific domain.
+
 ### Are open source models catching up to closed models?
 
 Largely, yes. The performance gap between the best open and closed models narrowed from 8.04% to 1.70% between January 2024 and February 2025 on the Chatbot Arena leaderboard.
@@ -141,8 +183,6 @@ Largely, yes. The performance gap between the best open and closed models narrow
 ### How many open source AI models are there?
 
 Hugging Face, the largest model hub, hosts over 2 million public models as of 2026, though about half have fewer than 200 downloads.
-
-Sources: [Hugging Face](https://huggingface.co/blog/huggingface/state-of-os-hf-spring-2026), [Stanford AI Index 2025](https://hai.stanford.edu/ai-index/2025-ai-index-report)
 
 ## Conclusion
 
