@@ -8,7 +8,7 @@ tags: ["Open Source"]
 
 The open source LLM ecosystem moves fast. New flagship models drop weekly, inference engines ship breakthrough optimizations, and agentic frameworks reinvent themselves overnight. Keeping up has become a full-time job, and the signal is scattered across model cards, GitHub repos, arXiv papers, Discord threads, and release blogs.
 
-Today I'm launching **[OpenLLMStack](https://openllmstack.com)** to fix that: a single, curated hub for the open source LLM stack so that you can focus on what matters.
+**[OpenLLMStack](https://openllmstack.com)** is designed to fix that: a single, curated hub for the open source LLM stack so that you can focus on what matters.
 
 ## Why another site?
 
