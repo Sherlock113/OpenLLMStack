@@ -11,7 +11,7 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
 const dateFmt = (d: string) =>
   new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 ---
-<Layout title="Blog — OpenLLMStack" description="Articles, guides, and deep dives on the open-source LLM ecosystem: models, inference, optimizations, and agents.">
+<Layout title="Blog — OpenLLMStack" description="Articles, guides, and deep dives on the open source LLM ecosystem: models, inference, optimizations, and agents.">
   <section class="py-16 sm:py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mb-12">
@@ -20,7 +20,7 @@ const dateFmt = (d: string) =>
           <span class="text-sm font-medium text-indigo-400 uppercase tracking-wider">Blog</span>
         </div>
         <h1 class="text-4xl sm:text-5xl font-bold mb-4">Blog</h1>
-        <p class="text-lg text-slate-400 max-w-2xl">Articles, guides, and deep dives on the open-source LLM ecosystem.</p>
+        <p class="text-lg text-slate-400 max-w-2xl">Articles, guides, and deep dives on the open source LLM ecosystem.</p>
       </div>
 
       {posts.length === 0 ? (

@@ -23,7 +23,7 @@ releaseBlog: "https://github.com/QwenLM/Qwen3.6"
 blogPosts:
   - title: "Qwen3.6-27B: 27B Model Beats 397B on Coding"
     url: "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026"
-  - title: "Qwen 3.6 Series: Alibaba's Open-Source LLM Revolution in 2026"
+  - title: "Qwen 3.6 Series: Alibaba's Open Source LLM Revolution in 2026"
     url: "https://aimlapi.com/blog/qwen-3-6-series-alibabas-open-source-llm-revolution-in-2026"
   - title: "Qwen 3.6 Deep Dive: Alibaba's Hybrid-Thinking Powerhouse"
     url: "https://localclaw.io/blog/qwen3-6-deep-dive"
