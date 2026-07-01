@@ -32,14 +32,20 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <title>{title}</title>
   <slot name="head" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQ208K0WLZ"></script>
   <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    const productionHosts = new Set(['openllmstack.com', 'www.openllmstack.com']);
 
-    gtag('config', 'G-VQ208K0WLZ');
+    if (productionHosts.has(window.location.hostname)) {
+      const googleTag = document.createElement('script');
+      googleTag.async = true;
+      googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-VQ208K0WLZ';
+      document.head.appendChild(googleTag);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VQ208K0WLZ');
+    }
   </script>
 </head>
 <body class="font-sans min-h-screen flex flex-col antialiased">
